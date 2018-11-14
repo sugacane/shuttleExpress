@@ -33,7 +33,7 @@ if(isset($_SESSION["user_id"]))
     <div class="container">
        <div class="login-container card ">
           <div class="card-header bg-dark">
-            <h3>shuttleExpress</h3>
+            <h3>shuttleExpress<img src="image/logo3-sm-cp.png" /></h3>
           </div>
           <div class="card-body">
           <h5 class="card-title" >Please enter login credetials below</h5>
@@ -49,15 +49,19 @@ if(isset($_SESSION["user_id"]))
             <i class="fas fa-key login-icons"></i>
           </div>
           <div class="form-group">
-          <div class="alert alert-warning">
+          <div class="">
+          	<h5>
 							<?php 
 							if(isset($_SESSION['errors']))
 							{
-								echo $_SESSION['errors'];
+								echo "<div class='alert alert-warning'>";
+								echo "".$_SESSION['errors'];
+								echo "</h5>";
+								echo "</div>";
 								unset($_SESSION['errors']);
+								
 							}
 							?>
-						</div>
           </div>
           <div class="form-group">
             <input class="btn btn-dark btn-full-width " type="submit" name="submit-btn" value="Log In"/>
