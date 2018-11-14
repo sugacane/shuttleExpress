@@ -13,10 +13,10 @@ $conn = new mysqli($servername, $username, $cpassword, $dbname);
 // get user info for adding student request
 $uwi_id = $_SESSION['user_id'];        //get users uwi ID
 $destination = $_POST['destination'];   //destination user wants
-
+$status = 0; //default status
 // prepare and bind
-$stmt = $conn->prepare("INSERT INTO tracking (uwi_id,destination) values (?,?)");
-$stmt->bind_param("is", $uwi_id, $destination);
+$stmt = $conn->prepare("INSERT INTO tracking (uwi_id,destination,status) values (?,?,?)");
+$stmt->bind_param("isi", $uwi_id, $destination,$status);
 
 $rc = $stmt->execute();
 //var_dump($stmt);

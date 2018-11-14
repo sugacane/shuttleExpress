@@ -54,7 +54,7 @@ if($stmt->fetch())
       redirectUser("home.php");
 		} else {
       // user entered wrong username or password
-		  $_SESSION['errors']=" Opps. Wrong Email or Password ";
+		  $_SESSION['errors']=" Ops. Wrong UWI ID or Password ";
       redirectUser("index.php");
 
 		}
@@ -63,11 +63,12 @@ else
 {
   // Whelp, that database call failed :(
   // However, well just tell the user to login again
-  $_SESSION['errors']=" Opps. Wrong Email or Password ";
+  $_SESSION['errors']=" Ops. Wrong UWI ID or Password ";
   redirectUser("index.php");
   
 }
-
+$stmt->close();
+$conn->close();
 /*
 $servername = "localhost";
 $username = "root";
@@ -115,7 +116,7 @@ if($stmt->fetch())
   } 
   else 
   {
-    $_SESSION['errors']=" Opps. Wrong Email or Password ";
+    $_SESSION['errors']=" Ops. Wrong UWI ID or Password ";
     $newurl = "index.php";
     //header('Location: '.$newurl);
     die();
@@ -126,7 +127,7 @@ else
   //var_dump();
   //fail
   echo "fail";
-  $_SESSION['errors']=" Opps. Wrong Email or Password ";
+  $_SESSION['errors']=" Ops. Wrong UWI ID or Password ";
   $newurl = "index.php";
   //header('Location: '.$newurl);
   die();

@@ -1,9 +1,76 @@
+/*background image fa login*/
+.login-background::after
+{
+  background-image: url(../image/uwifountain.jpg);
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /*background-color: rgba(255,0,0,0.3);*/
+  content: "";
+  opacity: 0.9;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: -1;   
+  
+}
+
+.nav-link::hover
+{
+	background-color: black !important;
+}
+
+.my-color
+{
+	background-color: rgba(255,193,7,0.8);
+}
 .login-container
 {
-  margin: 20px auto 0;
+  /*margin: 20px auto 0;*/
+  margin: auto;
   width: 500px;
-  padding: 16px;
-  border: 3px solid #f1f1f1;
+  /*padding: 16px;*/
+  /*border: 3px solid #f1f1f1;*/
+  color:white;
+  background-color:rgba(255,193,7,0.8);
+}
+
+.lil-labels
+{
+  font-weight:500;
+}
+
+.report_link
+{
+  display: block;
+  text-align: center;
+}
+.lilborder
+{
+  border: 1px #e4d6d6 solid;
+}
+.text_white
+{
+  color: white;
+}
+
+.login-inputs
+{
+  padding: 0 0 0 30px;
+}
+.login-icons
+{
+  position: absolute;
+  margin: -25px 0px 0px 9px;
+  color: rgb(128, 128, 128);
+}
+
+.report_link:hover
+{
+  text-decoration: none;
 }
 @media(max-width: 768px) {
   .btn-full-width {

@@ -29,22 +29,18 @@ if(isset($_SESSION["user_id"]))
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     </head>
-  <body class="login-background">
+  <body>
     <div class="container">
-       <div class="login-container card ">
-          <div class="card-header bg-dark">
-            <h3>shuttleExpress</h3>
-          </div>
-          <div class="card-body">
-          <h5 class="card-title" >Please enter login credetials below</h5>
+       <div class="login-container">
+        <h1>shuttleExpress Login</h1>
         <form action="verify_login.php" method="post">
           <div class="form-group">
-            <label class="lil-labels">UWI ID:</label>
+            <label>UWI ID:</label>
             <input type="text" class="form-control login-inputs" name="user_id">
             <i class="fas fa-user login-icons"></i>
           </div>
           <div class="form-group">
-            <label class="lil-labels">Password:</label>
+            <label for="password">Password:</label>
             <input type="password" class="form-control login-inputs" name="password">
             <i class="fas fa-key login-icons"></i>
           </div>
@@ -52,16 +48,15 @@ if(isset($_SESSION["user_id"]))
           <?php 
           if(isset($_SESSION['errors']))
           {
-            echo "<p>".$_SESSION['errors']."</p>";
+            echo $_SESSION['errors'];
             unset($_SESSION['errors']);
           }
           ?>
           </div>
           <div class="form-group">
-            <input class="btn btn-dark btn-full-width " type="submit" name="submit-btn" value="Log In"/>
+            <input class="btn btn-primary btn-full-width" type="submit" name="submit-btn" value="Log In"/>
           </div>
         </form>
-         </div>
       </div>
     </div>
   </body>
