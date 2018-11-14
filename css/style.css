@@ -81,3 +81,10 @@
     width: 98%;
   }
 }
+
+@media print {
+  .hide-print 
+	{
+    display: none;
+  }
+}

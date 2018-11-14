@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,16 +26,21 @@ session_start();
             <a class="nav-link" href="#"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-success" href="#"><i class="fas fa-question"></i> Help Desk</a>
+            <a class="nav-link text-success" href="help.php"><i class="fas fa-question"></i> Help Desk</a>
           </li>
-          <li class="nav-item">
-            <a class="btn btn-link" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          <li class="nav-item"
+           <?php
+            if(!($_SESSION['admin_status'] == 1))
+            {
+              echo "style=\"display: none\" ";
+            }
+          ?>
+           >
+            <a class="nav-link" href="view_all_reports.php"><i class="fas fa-file-alt"></i> View Report</a>
           </li>
         </ul>
         <ul class="navbar-nav">
-					<a class="btn btn-link" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
-        </ul>
-        <span class="navbar-text">
+        	<span class="navbar-text">
           <?php
             echo "Login as: ".$_SESSION['user_id']."";
             if($_SESSION['admin_status'] == 1)
@@ -48,5 +53,7 @@ session_start();
             }
           ?>
         </span>
+					<a class="btn btn-link" href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </ul>
       </div>
     </nav>

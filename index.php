@@ -49,13 +49,15 @@ if(isset($_SESSION["user_id"]))
             <i class="fas fa-key login-icons"></i>
           </div>
           <div class="form-group">
-          <?php 
-          if(isset($_SESSION['errors']))
-          {
-            echo "<p>".$_SESSION['errors']."</p>";
-            unset($_SESSION['errors']);
-          }
-          ?>
+          <div class="alert alert-warning">
+							<?php 
+							if(isset($_SESSION['errors']))
+							{
+								echo $_SESSION['errors'];
+								unset($_SESSION['errors']);
+							}
+							?>
+						</div>
           </div>
           <div class="form-group">
             <input class="btn btn-dark btn-full-width " type="submit" name="submit-btn" value="Log In"/>

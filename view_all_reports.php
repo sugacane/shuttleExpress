@@ -19,33 +19,24 @@ if(isset($_SESSION['admin_status']))
   die();
 }
 
-if(!isset($_GET["des"]))
-{
-  // get value not set so send back
-  // TODO: could let user know ...
-  $newurl = "admin_home.php";
-  header('Location: '.$newurl);
-  die();
-}
-
 
 require('config.php');
 
 require_once('destination_names.php');
 
 // Get all persons who requested a destination
-function getWhoRequested($destination) 
+function viewAllRequest() 
 {
   $result = array();
   
   
   $conn = new mysqli(hostname, user, password, db_name);
 
-  $sql="SELECT first_name, last_name, users.uwi_id, time_requested FROM tracking INNER JOIN users ON tracking.uwi_id = users.uwi_id WHERE destination=?";
+  $sql="SELECT first_name, last_name, users.uwi_id, time_requested FROM tracking INNER JOIN users ON tracking.uwi_id = users.uwi_id";
   
   // prepare and bind
   $stmt = $conn->prepare($sql);
-  $stmt->bind_param("s", $destination);
+  //$stmt->bind_param("s", $destination);
   
   $stmt->execute();
   
@@ -53,9 +44,7 @@ function getWhoRequested($destination)
   
   if( $rc->num_rows > 0 ) 
   {
-    echo "<h2>Request for [".
-    returnDestinationName($destination)  
-    ."] <span class=\"badge badge-secondary\">".$rc->num_rows."</span></h2>";
+    echo "<h2>View ALl Requests <span class=\"badge badge-secondary\">".$rc->num_rows."</span></h2>";
     while ($row = $rc->fetch_assoc())
     {
 		  echo "<tr>";
@@ -82,7 +71,7 @@ function getWhoRequested($destination)
   $conn->close();
 }
 
-$destination = $_GET["des"];
+//$destination = $_GET["des"];
 
 ?>
 
@@ -106,7 +95,7 @@ include_once('header.php');
                   </thead>
                   <tbody>";
         
-        getWhoRequested($destination);
+        viewAllRequest();
         echo "    </tbody>
                 </table>
               </div>";

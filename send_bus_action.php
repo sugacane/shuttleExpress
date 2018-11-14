@@ -47,6 +47,8 @@ function sendBus($destination)
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("ss", $time,$destination);
   
+	
+	
   $stmt->execute();
   
   //$rc = $stmt->get_result();
@@ -54,10 +56,24 @@ function sendBus($destination)
   // data is at least 1
   if($stmt->affected_rows > 0 ) 
   {
-    echo "affected [".$stmt->affected_rows."] student accounts ";
+		
+		// if 
+		include_once('header.php');
+		echo "<div class='container'><br>";
+		echo "Bus sent";
+		echo "</div>";
+		header('Refresh: 5; URL=admin_home.php');
+		die();
+		
   } else 
 	{
-		echo "Something went really wrong";
+		// if 
+		include_once('header.php');
+		echo "<div class='container'><br>";
+		echo " Cannot send bus for [".$stmt->affected_rows."] students.<a href=\"admin_home.php\">Redirecting to home page in 5 seconds</a>";
+		echo "</div>";
+		header('Refresh: 5; URL=admin_home.php');
+		die();
 	}
   
 } // 
