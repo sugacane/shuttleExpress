@@ -124,12 +124,18 @@ require_once('destination_names.php');
             }
             else
             {
-              echo "</td colspan=\"4\">No Result Found<td>";
+							echo "<h2>My History <span class=\"badge badge-secondary\">".$rc->num_rows."</span></h2>";
+              echo "<tr>";
+              echo "<td style=\"text-align: center;\" colspan=\"4\">No History Result Found</td>";
+							echo "</tr>";
             }
             
           } else 
           {
-            echo "</td colspan=\"4\">Failed Connection to Database<td>";
+						echo "<h2>My History <span class=\"badge badge-secondary\">".$rc->num_rows."</span></h2>";
+            echo "<tr>";
+            echo "<td colspan=\"4\">Failed Connection to Database</td>";
+						echo "</tr>";
           }
           // close database connection
           $stmt->close();

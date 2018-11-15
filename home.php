@@ -138,7 +138,8 @@ require_once('destination_names.php');
             //$rc = $stmt->bind_result($destination,$time);
             $rc = $stmt->get_result();
             //echo "".$rc->num_rows."";
-            if( $rc->num_rows > 0 ) {
+            if( $rc->num_rows > 0 ) 
+						{
 	   
               while ($row = $rc->fetch_assoc())
               {
@@ -169,12 +170,17 @@ require_once('destination_names.php');
             }
             else
             {
-              echo "</td colspan=\"2\">No Result Found<td>";
+							
+							echo "<tr>";
+              echo "<td style=\"text-align: center;\" colspan=\"4\">No History Result Found</td>";
+							echo "</tr>";
             }
             
           } else 
           {
-            echo "</td colspan=\"2\">Failed Connection to Database<td>";
+						echo "<tr>";
+            echo "<td colspan=\"4\">Failed Connection to Database</td>";
+						echo "</tr>";
           }
           // close database connection
           $stmt->close();
