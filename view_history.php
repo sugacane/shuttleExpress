@@ -26,63 +26,20 @@ require_once('destination_names.php');
 
 <!-- Home Page -->
 
-		<?php
-			ob_start();
+			<?php
+  		ob_start();
 			include_once('header.php');
 			$buffer=ob_get_contents();
 			ob_end_clean();
 
-			$title = "Home Page";
+			$title = "View History Page";
 			$buffer = preg_replace('/(<title>)(.*?)(<\/title>)/i', '$1' . $title . '$3', $buffer);
 
 			echo $buffer;
-		 ?>
+   		?>
     <div class="container">
-     <form action="add_student_request.php" method="post">
-        <h1>Tracking Page</h1>
-        <div class="form-group">
-          <label>Make request for Shuttle:</label>
-          <select class="form-control" name="destination">
-            <option value="bridgetown">Bridgetown</option>
-            <option value="warrens">Warrens</option>
-            <option value="heightsterraces">Heights & Terraces</option>
-            <option value="lazaretto">Lazaretto</option>
-          </select>
-        </div>   
-        <div class="form-group">
-          <button type="submit" id="submit-btn"  class="btn btn-primary btn-full-width" ><i class="far fa-compass"></i> Request Location</button>
-        </div>
-        <div class="alert 
-          <?php
-            if(isset($_SESSION['request_status']))
-            {
-              if($_SESSION['request_status'] == 1)
-              {
-                echo "alert-success";
-              } else
-              {
-                echo "alert-danger";
-              }
-            }
-          ?>
-          "
-        >
-         <?php
-            if(isset($_SESSION['request_status']))
-            {
-              if($_SESSION['request_status'] == 1)
-              {
-                echo "Successfully added your request.";
-              } else
-              {
-                echo "Failed to add your request. Try again.";
-              }
-              unset($_SESSION['request_status']);
-            }
-         ?>
-       </div>
-      </form>
-      <h2>My History</h2>
+      <br>
+      <!--<h2>My History</h2>-->
       <?php
         require('config.php');
       
@@ -127,7 +84,7 @@ require_once('destination_names.php');
           // Create connection
           $conn = new mysqli(hostname, user, password, db_name);
 
-          $sql="SELECT destination, time_requested, status, pickup_time FROM tracking WHERE uwi_id=? ORDER BY time_requested DESC LIMIT 10";
+          $sql="SELECT destination, time_requested, status, pickup_time FROM tracking WHERE uwi_id=? ORDER BY time_requested DESC";
           // prepare and bind
           if($stmt = $conn->prepare($sql))
           {
@@ -140,19 +97,17 @@ require_once('destination_names.php');
             //echo "".$rc->num_rows."";
             if( $rc->num_rows > 0 ) {
 	   
+							echo "<h2>My History <span class=\"badge badge-secondary\">".$rc->num_rows."</span></h2>";
               while ($row = $rc->fetch_assoc())
               {
-								$tempTime = $row['pickup_time'];
-								$justTime = date("H:i:s",strtotime($tempTime));
-								
+								/*
+								if()
+								{
+									
+								}*/
                 echo "<tr>";
                 echo "<td>";
                 echo returnDestinationName($row['destination']);
-								if(($tempTime != NULL) && (time() - strtotime($tempTime)) < 3601)
-								{
-									// if reponse is not null and within the last hour
-									echo " <span class=\"badge badge-dark\">New</span>";
-								}
                 echo "</td>";
                 echo "<td>";
                 echo $row['time_requested'];
@@ -169,12 +124,12 @@ require_once('destination_names.php');
             }
             else
             {
-              echo "</td colspan=\"2\">No Result Found<td>";
+              echo "</td colspan=\"4\">No Result Found<td>";
             }
             
           } else 
           {
-            echo "</td colspan=\"2\">Failed Connection to Database<td>";
+            echo "</td colspan=\"4\">Failed Connection to Database<td>";
           }
           // close database connection
           $stmt->close();

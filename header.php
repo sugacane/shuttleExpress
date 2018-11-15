@@ -23,7 +23,7 @@
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="home.php"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-success" href="help.php"><i class="fas fa-question"></i> Help Desk</a>
@@ -38,6 +38,16 @@
            >
             <a class="nav-link" href="view_all_reports.php"><i class="fas fa-file-alt"></i> View Report</a>
           </li>
+          <li class="nav-item"
+           <?php
+            if(($_SESSION['admin_status'] == 1))
+            {
+              echo "style=\"display: none\" ";
+            }
+          ?>
+           >
+            <a class="nav-link" href="view_history.php"><i class="fas fa-file-alt"></i> View History</a>
+          </li>
         </ul>
         <ul class="navbar-nav">
         	<span class="navbar-text">
@@ -49,7 +59,7 @@
             } 
             else 
             {
-              echo " NOT ADMIN";
+              //echo " NOT ADMIN";
             }
           ?>
         </span>

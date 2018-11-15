@@ -44,7 +44,7 @@ function viewAllRequest()
   
   if( $rc->num_rows > 0 ) 
   {
-    echo "<h2>View ALl Requests <span class=\"badge badge-secondary\">".$rc->num_rows."</span></h2>";
+    echo "<h2>View All Requests <span class=\"badge badge-secondary\">".$rc->num_rows."</span></h2>";
     while ($row = $rc->fetch_assoc())
     {
 		  echo "<tr>";
@@ -76,9 +76,17 @@ function viewAllRequest()
 ?>
 
 <!-- Login Page -->
-<?php
-include_once('header.php');
-?>
+			<?php
+			ob_start();
+			include_once('header.php');
+			$buffer=ob_get_contents();
+			ob_end_clean();
+
+			$title = "View All Reports Page";
+			$buffer = preg_replace('/(<title>)(.*?)(<\/title>)/i', '$1' . $title . '$3', $buffer);
+
+			echo $buffer;
+			?>
 
     <div class="container">
      <br>

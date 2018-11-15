@@ -62,9 +62,17 @@ function getNumberOfRequest($destination)
 
 
 <!-- Admin Home Page -->
-<?php
-include_once('header.php');
-?>
+		<?php
+		ob_start();
+		include_once('header.php');
+		$buffer=ob_get_contents();
+		ob_end_clean();
+
+		$title = "Admin Home Page";
+		$buffer = preg_replace('/(<title>)(.*?)(<\/title>)/i', '$1' . $title . '$3', $buffer);
+
+		echo $buffer;
+		?>
     <div class="container">
       <h1></h1>
       <p>Click on a destination below to view request for destination.</p>

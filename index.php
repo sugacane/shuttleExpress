@@ -3,10 +3,9 @@ session_start();
 if(isset($_SESSION["user_id"]))
 {
   //redirect to home page
-  
-} else if(isset($_SESSION["admin_status"]))
-{
-  //redirect to admin view
+	$newurl = "home.php";
+  header('Location: '.$newurl);
+  die();
   
 }
 
@@ -33,7 +32,7 @@ if(isset($_SESSION["user_id"]))
     <div class="container">
        <div class="login-container card ">
           <div class="card-header bg-dark">
-            <h3>shuttleExpress<img src="image/logo3-sm-cp.png" /></h3>
+            <h3>shuttleExpress</h3>
           </div>
           <div class="card-body">
           <h5 class="card-title" >Please enter login credetials below</h5>

@@ -86,10 +86,18 @@ $destination = $_GET["des"];
 
 ?>
 
-<!-- Login Page -->
-<?php
-include_once('header.php');
-?>
+<!-- Report Page -->
+			<?php
+			ob_start();
+			include_once('header.php');
+			$buffer=ob_get_contents();
+			ob_end_clean();
+
+			$title = "Single Report Page";
+			$buffer = preg_replace('/(<title>)(.*?)(<\/title>)/i', '$1' . $title . '$3', $buffer);
+
+			echo $buffer;
+			?>
 
     <div class="container">
      <br>

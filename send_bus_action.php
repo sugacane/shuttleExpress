@@ -58,7 +58,15 @@ function sendBus($destination)
   {
 		
 		// if 
+		ob_start();
 		include_once('header.php');
+		$buffer=ob_get_contents();
+		ob_end_clean();
+
+		$title = "Send Bus Page";
+		$buffer = preg_replace('/(<title>)(.*?)(<\/title>)/i', '$1' . $title . '$3', $buffer);
+
+		echo $buffer;
 		echo "<div class='container'><br>";
 		echo "Bus sent";
 		echo "</div>";
@@ -70,7 +78,7 @@ function sendBus($destination)
 		// if 
 		include_once('header.php');
 		echo "<div class='container'><br>";
-		echo " Cannot send bus for [".$stmt->affected_rows."] students.<a href=\"admin_home.php\">Redirecting to home page in 5 seconds</a>";
+		echo " Cannot send bus for [".$stmt->affected_rows."] students.<a href=\"admin_home.php\"> Redirecting to home page in 5 seconds</a>";
 		echo "</div>";
 		header('Refresh: 5; URL=admin_home.php');
 		die();
