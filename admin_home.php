@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 //IF USER IS NOT A ADMIN, SEND THEM TO HOME PAGE
 if(isset($_SESSION['admin_status']))
 {

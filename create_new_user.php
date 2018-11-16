@@ -1,15 +1,10 @@
 <?php
 session_start();
 
-$servername = "localhost";
-$username = "root";
-$cpassword = "";
-$dbname = "shuttle_system";
-
-$json=null;
+require('config.php');
 
 // Create connection
-$conn = new mysqli($servername, $username, $cpassword, $dbname);
+$conn = new mysqli(hostname, user, password, db_name);
 
 $uwi_id = $_POST['uwi_id'];
 $password = $_POST['password'];

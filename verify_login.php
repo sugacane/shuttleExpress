@@ -9,15 +9,20 @@ function redirectUser($url)
   die();
 }
 
-$servername = "localhost";
-$username = "root";
-$cpassword = "";
-$dbname = "shuttle_system";
+// strlen($_POST['user_id']) == 9
+// !is_int(intval($_POST['user_id'])
 
-$json=null;
+if(!isset($_POST['user_id']) || !(strlen($_POST['user_id']) == 9) )
+{
+	//
+	$_SESSION['errors']=" Oops. Wrong UWI ID or Password ";
+	redirectUser("index.php");
+}
+
+require('config.php');
 
 // Create connection
-$conn = new mysqli($servername, $username, $cpassword, $dbname);
+$conn = new mysqli(hostname, user, password, db_name);
 $user_id = $_POST['user_id'];
 $password = $_POST['password'];
 

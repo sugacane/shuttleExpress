@@ -3,5 +3,4 @@
  define('user', 'root');
  define('password', '');
  define('db_name', 'shuttle_system');
-
 ?>

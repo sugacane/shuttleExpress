@@ -1,14 +1,10 @@
 <?php
 session_start();
 
-
-$servername = "localhost";
-$username = "root";
-$cpassword = "";
-$dbname = "shuttle_system";
+require('config.php');
 
 // Create connection
-$conn = new mysqli($servername, $username, $cpassword, $dbname);
+$conn = new mysqli(hostname, user, password, db_name);
 
 // get user info for adding student request
 $uwi_id = $_SESSION['user_id'];        //get users uwi ID
